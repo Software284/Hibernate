@@ -1,0 +1,79 @@
+Transaction:-> A transaction simply represents a unit of work. In such case, if one step fails, the whole 
+transaction fails (which is termed as atomicity). A transaction can be described by ACID properties
+ (Atomicity, Consistency, Isolation and Durability).
+ 
+ Transaction Interface in Hibernate
+In hibernate framework, we have Transaction interface that defines the unit of work.
+ It maintains abstraction from the transaction implementation (JTA,JDBC).
+
+A transaction is associated with Session and instantiated by calling session.beginTransaction().
+
+The methods of Transaction interface are as follows:
+
+void begin() starts a new transaction.
+void commit() ends the unit of work unless we are in FlushMode.NEVER.
+void rollback() forces this transaction to rollback.
+void setTimeout(int seconds) it sets a transaction timeout for any transaction started by a subsequent call to begin on this instance.
+boolean isAlive() checks if the transaction is still alive.
+void registerSynchronization(Synchronization s) registers a user synchronization callback for this transaction.
+boolean wasCommited() checks if the transaction is commited successfully.
+boolean wasRolledBack() checks if the transaction is rolledback successfully.
+
+Atomicity:->
+let's suppose we have a 2 statemesnts
+A's account balance=200
+B's account balance=300
+
+Step1:-> Deduct A's account by 50
+A's account balance = 140
+Step2:-> Deposit B's account by 50
+B's account balance = 350
+
+if the operation is performed successfully then there won't be any problem but if after completion of step1
+if any error occurs and system goes down then second step is not completed and system goes to inconsistent 
+state.to overcome this problem hibernate ensures atomicity.
+
+the atomicity is the basic thing that any transaction management wants to achive.either the transaction should
+be completely successful or all of the changes that are done by transaction should be reverted back.
+
+Consistency:-> when you take a bank there would be thousands of such kinds of fund transfers which would be
+happening in parallel.any transaction should leave a system in consistent state.let's take a example of
+bank transfer.so when a transaction happens between two accounts in the same bank let's iam transfering  hundred rupees from 
+account a to account b. total sum of the balance of account a and b should be the same irrespective of whether the transaction is failed
+or success.that's the good signal for consistent state.
+
+Isolation:-> how does one transaction which is happening affect the transaction which is running in parallel.let's suppose
+Transaction 1:-> Transfer 50 from A to B
+Transaction 2:-> Transfer 100 from A to C
+
+A's balance= 200
+B's balance= 300
+C's balance= 500
+
+i. Dirty Read
+Transaction-1-Step-1:-> Deduct A's Account by 50$ 
+Transaction-2-Step-1:-> Dedcut A's Account By 100$
+Transaction-1-Step-2:-> Deposit 50 into B's Account
+Transaction-2-Step-2:-> Deposit 100 into C's Account
+
+let's supppose if transaction-1-Step-2 failed by some reason then 
+A's balance = 200
+B's balance=300
+C's balance= 600
+
+here even before transaction 1 completes execution transaction 2 is trying to read the value which is updated by transaction 1 that's
+called dirty read.
+
+
+Durability:-> if transaction is successful or completed it's execution and even in the system crashes or something wrong happen the data
+should be persisted.whatever change we made during the transaction,the end state of the transaction  should be persisted even if there
+are failures.any change you have made is durable.
+
+
+
+
+
+
+
+
+

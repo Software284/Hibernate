@@ -1,0 +1,5 @@
+package com.lamichhane.hibernate.crud.demo;
+
+public class Student {
+
+}

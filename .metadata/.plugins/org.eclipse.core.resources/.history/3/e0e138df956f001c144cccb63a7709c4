@@ -1,0 +1,11 @@
+package com.lamichhane.hibernate.crud.demo;
+
+public class ReadAllStudentWithFirstNameMaheshORLastNameSharma {
+
+	public static void main(String[] args) {
+		
+		
+
+	}
+
+}

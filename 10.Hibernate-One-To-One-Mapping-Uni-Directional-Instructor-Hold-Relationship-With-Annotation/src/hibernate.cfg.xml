@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8'?>  
+<!DOCTYPE hibernate-configuration PUBLIC  
+          "-//Hibernate/Hibernate Configuration DTD 5.3//EN"  
+          "http://hibernate.sourceforge.net/hibernate-configuration-5.3.dtd">  
+  
+<hibernate-configuration>  
+  
+    <session-factory>  
+    
+   	    <!-- JDBC DATABASE CONNECTION SETTING -->
+   	    <property name="connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
+        <property name="connection.url">jdbc:oracle:thin:@localhost:1521:orcl</property>  
+        <property name="connection.username">sys as sysdba</property>  
+        <property name="connection.password">software</property> 
+        
+        <!-- JDBC CONNECTION POOL SETTING --> 
+        <property name="connection.pool_size">1</property>
+        
+        <!-- SELECT OUR SQL DIALECT -->
+        <property name="dialect">org.hibernate.dialect.Oracle9Dialect</property>
+        
+        <!-- PRINT THE SQL COMMAND TO THE CONSOLE -->
+        <property name="show_sql">true</property>
+        
+        <!-- SETTING THE DATA INSERTION TO AUTO -->
+        <property name="hbm2ddl.auto">update</property>
+        
+        <property name="hibernate.current_session_context_class">thread</property>
+        
+        
+        <mapping class="com.lamichhane.one.to.one.entity.Instructor"/> 
+        <mapping class="com.lamichhane.one.to.one.entity.InstructorDetail"/> 
+       
+          
+    </session-factory>  
+  
+</hibernate-configuration>

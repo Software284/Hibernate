@@ -1,0 +1,5 @@
+In case of Table Per Subclass, subclass mapped tables are related to parent class mapped table by primary key and foreign key relationship.
+
+The <joined-subclass> element of class is used to map the child class with parent using the primary key and foreign key relation.
+
+In this example, we are going to use hb2ddl.auto property to generate the table automatically. So we don't need to be worried about creating tables in the database.

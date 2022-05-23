@@ -1,0 +1,9 @@
+Hibernate Framework:-> Hibernate is a java framework that simplifies the development of a java application to interact with the database.it is an
+open source,lightweight,ORM tool.hibernate implements the specifications of JPA for data persistence.
+
+ORM Tool:-> An ORM tool simplifies the data creation, data manipulation and data access. it is a programming technique that maps the object to the
+data stored in the datbase.ORM tool internally uses the JDBC API to interact with the database.
+
+JPA:-> Java Persistence API(JPA) is a java specification that provides certain functionality and standard to ORM tools.the javax.persistence package
+contains the JPA classes and interfaces.
+

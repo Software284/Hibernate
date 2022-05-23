@@ -1,0 +1,106 @@
+Hibernate caching improves the performance of the application by pooling the object in the cache. It is useful when we have to fetch the
+same data multiple times.
+
+
+
+There are mainly two types of caching:
+
+First Level Cache:-> Session object holds the first level cache data. It is enabled by default. The first level cache data will not be 
+available to entire application. An application can use many session object.
+
+
+
+
+Second Level Cache:-> SessionFactory object holds the second level cache data. The data stored in the second level cache will be
+available to entire application. But we need to enable it explicitely.
+
+EH (Easy Hibernate) Cache
+Swarm Cache
+OS Cache
+JBoss Cache
+
+First Level Cache:-> let's we have four transactions which are running in parallel and each of these transaction is associated with persistence context of it's 
+own.so each of these transaction have a persistence context where all the entities that are being modified during that transaction are 
+tracked so transaction one has it's own persistence context transaction.transaction two and three also contains it's own persistence 
+context.
+so let's say during transaction one and retrieving the details of the same code again and again.let's say we are retrieving the details of
+course with id of 1000 three times what would happen is hibernate will not go to the databases all the three times ,first time it would
+go to the database and retrieves the details and it will have it inside the persistence context.the next time you ask for the same code 
+details hibernate would actually return it back from the persistence context.it will not really talk to the database. it will directly 
+pull it from the cash and return it back this is where first level cache comes into the picture.
+the first level cache is within the boundry of a single transaction.if you trying to retrieve the same data again the first level cache 
+comes into the picture.
+
+Second Level Cache:-> The second level cache comes into the picture across multiple transaction.let's say you have one instance of an application deployed on 
+a application server or a web server.and there are multiple user using this application.irrespective of user the list of states or list
+of countries are the same.the list of countries,list of states,all this kind of stuff does not change with the user.what we can do is
+we can store such information in the second level cache.second level cache typically stores the common information for all the users of 
+an application.
+
+so let's say the application has just launched up and there's request for a list of countries what would happen,the transaction one goes 
+to the persistence context and we would go to the second level cache.if the details are not in the second level cache then we would go
+to the database get the details and put it into the second level cache and from then on any of request in any of the transaction there 
+after the data would be retrieved from the second level cache we don't need to go to the database.
+
+the second level cache is usable in between the multiple transaction.if any other transaction retrieve data from database then it will
+add to the second level cache.if any other user wants to get that data then he can access from second level cache.
+
+
+First Level Cache Example:->
+
+@Transactional
+public void findById(){
+
+	Course c1 = repository.findById(10001);
+	Course c2 = repository.findById(10001);
+	
+	}
+	
+here c2 cached from the persistence context.first level cache always inside the boundry of single trnsactio.
+UI-WEB-> Serviec -> Data -> Database
+here it is best to add transcational at service layer.
+
+we need to add configurations to use second level cache.we need to add dependency
+<dependency>
+	<groupId>org.hibernate</groupId>
+	<artifactId>hibernate.ehcache</artifactId>
+</dependency>
+
+applicaiton.properties:-> 
+
+# enable second level cache
+spring.jpa.properties.hibernate.cache.use_second_level_cache = true
+# specify the cache framework
+spring.jpa.properties.hibernate.cache.region.factory_class = org.hibernate.ehcache.EhCacheRegionFactory
+# only cache what i tell to cache
+spring.jpa.properties.javax.persistence.sharedCache.mode = ENABLE_SELECTIVE
+# what data to cache
+
+
+@Cacheable
+public class Course{
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

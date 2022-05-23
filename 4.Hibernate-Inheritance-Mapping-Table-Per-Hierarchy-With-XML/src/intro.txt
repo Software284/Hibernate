@@ -1,0 +1,4 @@
+Table Per Hierarchy:-> By this inheritance strategy, we can map the
+whole hierarchy by single table only.Here, an extra column(also 
+known as discriminator column) is created in the table to identify
+the class.

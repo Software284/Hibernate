@@ -1,0 +1,3 @@
+Transaction:-> A transaction simply represents a unit of work. In such case, if one step fails, the whole 
+transaction fails (which is termed as atomicity). A transaction can be described by ACID properties
+ (Atomicity, Consistency, Isolation and Durability).

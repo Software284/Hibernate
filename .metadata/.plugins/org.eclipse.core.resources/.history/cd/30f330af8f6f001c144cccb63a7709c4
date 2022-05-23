@@ -1,0 +1,26 @@
+package com.lamichhane.hibernate.crud.demo;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="student786")
+public class Student {
+	
+	@Column(name="first_name")
+	private String firstName;
+	
+	@Column(name="last_name")
+	private String lastName;
+	
+	@Column(name="email")
+	private String email;
+
+	public Student(String string, String string2, String string3) {
+		this.firstName=string;
+		this.lastName=string2;
+		this.email=string3;
+	}
+	
+}

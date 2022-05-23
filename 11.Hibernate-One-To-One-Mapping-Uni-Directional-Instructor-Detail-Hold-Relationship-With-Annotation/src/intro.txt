@@ -1,0 +1,11 @@
+in case of bi-directional we can only fetch and delete data from another end which is opposite of table which holds the
+relationship but we can't insert data only from that end which holds the relationship.
+
+we only need bi-directionl to fetch and delete data from both sides not for insertion.
+
+we use cascade type all to delete succesor row if the current row is deleted.it's opposite is
+cascade={CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH}
+
+Note:if we want to use cascade type of list above then we need to first set instructor column foreign
+key id to null then we will only delete instructor detail data.
+

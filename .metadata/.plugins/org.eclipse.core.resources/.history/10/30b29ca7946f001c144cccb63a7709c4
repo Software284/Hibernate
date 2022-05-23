@@ -1,0 +1,11 @@
+package com.lamichhane.hibernate.crud.demo;
+
+public class ReadAllStudentDemo {
+
+	public static void main(String[] args) {
+		
+		
+
+	}
+
+}

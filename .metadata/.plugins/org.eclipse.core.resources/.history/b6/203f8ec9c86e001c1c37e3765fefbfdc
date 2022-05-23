@@ -1,0 +1,25 @@
+Hibernate Framework:-> Hibernate is a java framework that simplifies the development of a java application to interact with the database.it is an
+open source,lightweight,ORM tool.hibernate implements the specifications of JPA for data persistence.
+
+ORM Tool:-> An ORM tool simplifies the data creation, data manipulation and data access. it is a programming technique that maps the object to the
+data stored in the datbase.ORM tool internally uses the JDBC API to interact with the database.
+
+JPA:-> Java Persistence API(JPA) is a java specification that provides certain functionality and standard to ORM tools.the javax.persistence package
+contains the JPA classes and interfaces.
+
+Advantage:->
+i. Open Source and Lightweight
+ii. Fast Performance
+iii. Database Independent Query
+iv. Automatic Table Creation
+v. Simplifies Complex Join
+vi. Provides Query Statistics and Database Status
+
+Element Of Hibernate Architecture:-> For creating the first hibernate application,we must know the elements of hibernate architecture.they are
+as follows:
+i. SessionFactory:-> The Session Factory is a factory of a session and client of ConnectionProvider. it holds second level cache(optional) of
+data. the org.hibernate.SessionFactory interface provides factory method to get the object of Session.
+
+ii. Session:-> The session object provides an interface between the application and data strored in the database.it is a short-lived object and 
+wraps the JDBC connection.it is factory of a Transaction,Query and Criteria. it holds a first-level cache(mandatory) of data. The org.hibernate.
+Session interface provides method to insert,update and delete of object.

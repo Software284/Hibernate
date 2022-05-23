@@ -1,0 +1,67 @@
+package com.lamichhane.many.to.many.test;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
+import com.lamichhane.one.to.many.many.to.one.entity.Course;
+import com.lamichhane.one.to.many.many.to.one.entity.Instructor;
+
+
+
+public class InsertCourse {
+
+	public static void main(String[] args) {
+		
+		//create session factory
+				SessionFactory factory = new Configuration()
+											.configure("hibernate.cfg.xml")
+											.addAnnotatedClass(Course.class)
+											.addAnnotatedClass(Instructor.class)
+											.buildSessionFactory();
+				
+				//create session
+				Session session = factory.getCurrentSession();
+				
+				try {
+					
+					int id = 9;
+					
+					
+					// start a transaction
+				    session.beginTransaction();
+								
+								
+					//save the instructor
+				    Instructor i = session.get(Instructor.class, id);
+				   
+				    Course c = new Course("Spring");
+				    Course c2 = new Course("Java");
+				    c.setInstructor(i);
+				    c2.setInstructor(i);
+				    
+				    session.save(c);
+				    session.save(c2);
+				    
+				    session.save(i);
+				    
+				   
+					
+					
+					//commit transaction
+					session.getTransaction().commit();
+					
+					System.out.println("Done");
+					
+					
+				}
+				finally {
+					factory.close();
+				}
+
+	}
+
+}

@@ -1,0 +1,5 @@
+package com.lamichhane.many.to.many.entity;
+
+public class Student {
+
+}

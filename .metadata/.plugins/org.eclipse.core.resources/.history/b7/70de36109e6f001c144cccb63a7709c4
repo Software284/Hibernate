@@ -1,0 +1,10 @@
+package com.lamichhane.hibernate.crud.demo;
+
+public class DeleteStudent {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

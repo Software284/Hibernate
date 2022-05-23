@@ -1,0 +1,83 @@
+package com.lamichhane.many.to.many.entity;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="course")
+public class Course {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "course_id_seq")
+	@SequenceGenerator(name = "course_id_seq", 
+	                   sequenceName = "one_to_many_course_id",
+	                   allocationSize = 1) 
+	@Column(name="id")
+	private int id;
+	
+	@Column(name="title")
+	private String title;
+	@ManyToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE,
+			CascadeType.DETACH,CascadeType.REFRESH})
+	
+	@ManyToMany
+	private List<Student> students;
+	
+	public void addStudent(Student student) {
+		
+		if(students == null) {
+			students = new ArrayList<Student>();
+		}
+		students.add(student);
+	}
+	
+	
+	public Course() {
+		super();
+	}
+	public Course(String title) {
+		super();
+		this.title = title;
+	}
+	
+	
+	
+	
+	@Override
+	public String toString() {
+		return "Course [id=" + id + ", title=" + title + "]";
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public List<Student> getStudents() {
+		return students;
+	}
+	public void setStudents(List<Student> students) {
+		this.students = students;
+	}
+	
+	
+	
+	
+}

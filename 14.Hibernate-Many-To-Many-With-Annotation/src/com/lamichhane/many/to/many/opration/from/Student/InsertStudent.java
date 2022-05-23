@@ -1,0 +1,64 @@
+package com.lamichhane.many.to.many.opration.from.Student;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
+import com.lamichhane.many.to.many.entity.Course;
+import com.lamichhane.many.to.many.entity.Student;
+
+
+
+
+public class InsertStudent {
+
+	public static void main(String[] args) {
+		
+		//create session factory
+				SessionFactory factory = new Configuration()
+											.configure("hibernate.cfg.xml")
+											.addAnnotatedClass(Course.class)
+											.addAnnotatedClass(Student.class)
+											.buildSessionFactory();
+				
+				//create session
+				Session session = factory.getCurrentSession();
+				
+				try {
+					
+					
+					
+					
+					// start a transaction
+				    session.beginTransaction();
+								
+								
+					Course st1 = session.get(Course.class, 42);
+					
+					Student c1 = new Student("Mansish","Paudel","manish@gmail.com");
+					Student c2 = new Student("Kamal","Paudel","kamal@gmail.com");
+					
+					st1.addStudent(c1);
+					st1.addStudent(c2);
+							
+					session.save(c1);
+					session.save(c2);
+				    
+//				   session.save(c1);
+//				   session.save(c2);
+					
+					
+					//commit transaction
+					session.getTransaction().commit();
+					
+					System.out.println("Done");
+					
+					
+				}
+				finally {
+					factory.close();
+				}
+
+	}
+
+}

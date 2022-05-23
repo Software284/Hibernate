@@ -1,0 +1,11 @@
+package com.lamichhane.hibernate.crud.demo;
+
+public class Student {
+
+	public Student(String string, String string2, String string3) {
+		// TODO Auto-generated constructor stub
+	}
+	private String firstName;
+	private String lastName;
+	private String email;
+}

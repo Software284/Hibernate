@@ -1,0 +1,72 @@
+Hibernate Framework:-> Hibernate is a java framework that simplifies the development of a java application to interact with the database.it is an
+open source,lightweight,ORM tool.hibernate implements the specifications of JPA for data persistence.
+
+ORM Tool:-> An ORM tool simplifies the data creation, data manipulation and data access. it is a programming technique that maps the object to the
+data stored in the datbase.ORM tool internally uses the JDBC API to interact with the database.
+
+JPA:-> Java Persistence API(JPA) is a java specification that provides certain functionality and standard to ORM tools.the javax.persistence package
+contains the JPA classes and interfaces.
+
+Advantage:->
+i. Open Source and Lightweight
+ii. Fast Performance
+iii. Database Independent Query
+iv. Automatic Table Creation
+v. Simplifies Complex Join
+vi. Provides Query Statistics and Database Status
+
+Element Of Hibernate Architecture:-> For creating the first hibernate application,we must know the elements of hibernate architecture.they are
+as follows:
+i. SessionFactory:-> The Session Factory is a factory of a session and client of ConnectionProvider. it holds second level cache(optional) of
+data. the org.hibernate.SessionFactory interface provides factory method to get the object of Session.
+
+ii. Session:-> The session object provides an interface between the application and data strored in the database.it is a short-lived object and 
+wraps the JDBC connection.it is factory of a Transaction,Query and Criteria. it holds a first-level cache(mandatory) of data. The org.hibernate.
+Session interface provides method to insert,update and delete of object. it also provides factory methods for Transaction,Query and Criteria.
+
+iii. Transaction:-> The transaction object specifies the atomic unit of a work. it is optional. the org.hibernate.Transaction interface provides 
+methods for transaction management.
+
+
+
+iv. ConnectionProvider:-> it is a factory of JDBC connections.it abstracts the application from DriverManager or DataSource. it is optional.
+
+v. Transaction Factory:-> it is a factory of Transaction. it is optional.
+
+
+Generator Classes in Hibernate:-> The <generator> class is a sub-element of id. it is used to generate the unique identifier for the objects of
+persistent classs.there are many generator classes defined in the Hibernate Framework.all the generator classes implements the org.hibernate.id.
+IdentifierGenerator interface. the application programmer may create one's own generator classes by implementing the IdentifierGenerator interface.
+Hibernate framework provides many built-in generator classes:->
+i. assigned:-> it is the default generator strategy if there is no <generator> element. In this case, application(hibernate)
+ assigns the id.
+Example:-> 
+<generator class="assigned"/>
+@GeneratedValue(generator="assigned")
+
+
+ii. increament:-> it genrates the unique id only if no other process is inserting data into this table.it generates short,int or
+long type identifier.if a table contains an identifier then the application considers it's maximum value else the application
+consider that th first generated identifier is 1. for each attribute value,the hibernate increament the identifier by 1.
+Example:->
+<generator class="increament"/>
+@GeneratedValue(generator="increament")
+
+iii.sequence:-> it uses the sequence of the database.if there is no sequence defined,it created a sequence automatically.e.g
+in case of Oracle databases,it creates a sequence named HIBERNATE_SEQUENCE. in case of oracle,
+DB2,SAP DB,Postgres SQL,it uses sequence but it uses generator in interbase.
+Example:->
+<generator class="sequence">
+	<param name="sequence">your_sequence_name</param>
+</generator>
+
+@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "student_id_seq")
+@SequenceGenerator(name = "student_id_seq", 
+                   sequenceName = "Student_seq",
+                   allocationSize = 1) 
+                   
+                   
+iv.identity:-> it is used in Sybase,My SQL, MS SQL Server,DB2 and Oracle to support the id column.
+the returned id is of type short,int or long. it is the responsibility of database to generate unique number.     
+ 
+

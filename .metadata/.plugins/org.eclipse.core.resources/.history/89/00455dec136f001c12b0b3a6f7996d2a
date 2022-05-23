@@ -1,0 +1,9 @@
+package com.lamichhane.inheritance.mapping.with.tph;
+
+public class Regular_Employee {
+	
+	private float salary;  
+	private int bonus; 
+	
+	
+}

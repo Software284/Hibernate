@@ -1,0 +1,9 @@
+Table Per Concreate Class:-> In case of Table
+Per Concreate class, there will be three tables in the database having no relations
+to each other. there are two ways to map 
+the tble with table per concreate classs
+strategy.
+
+  -> By union-subclass element
+  -> By self creating the table for each class
+  

@@ -1,0 +1,14 @@
+In case of Table Per Concreate class, tables are created per class.
+so there are no nullable values in the table. disadvantage of this
+apporach is that duplicate columns are created in the subclass tables.
+
+here, we need to use @Inheritance(strategy = InheritanceType.TABLE_
+PER_CLASS) annotation in the parent class and @AttributeOverrides annotation
+in the subclasses.
+
+@InHeritance(strategy = InheritanceType.TABLE_PER_CLASS) specifies that
+we are using table per concreate class strategy.it should be 
+specified in the parent class only.
+
+@AttributeOverrides defines that parent class attributes will be
+overidden in this class. in table structure, parent class table

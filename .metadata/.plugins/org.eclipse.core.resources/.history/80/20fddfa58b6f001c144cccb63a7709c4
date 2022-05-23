@@ -1,0 +1,8 @@
+package com.lamichhane.hibernate.crud.demo;
+
+public class Student {
+
+	private String firstName;
+	private String lastName;
+	private String email;
+}
